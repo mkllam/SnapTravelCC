@@ -32,9 +32,7 @@ const country = 'Canada'
 
 const getExistingAmenities = (hotelLib, amenityExists, nation = "") => {
   // Create a clone of amenityExists
-  let existingAmenities = {};
-  for (var key in amenityExists)
-    existingAmenities[key] = false;
+  let existingAmenities = JSON.parse(JSON.stringify(amenityExists));
   // filter for hotel  
   for (let i = 0; i < hotelLib.length && (nation == hotelLib[i].country || nation == ""); i++) {
     hotelLib[i].amenities.forEach(function(amenity) {
