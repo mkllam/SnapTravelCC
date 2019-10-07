@@ -28,20 +28,20 @@ const amenityExistsInList = {
   gym: false,
 }
 
-const country = 'Canada'
+const country = "Canada"
 
 const getExistingAmenities = (hotelLib, amenityExists, nation = "") => {
   // Create a clone of amenityExists
-  let existingAmenities = {};
-  for (var key in amenityExists)
-    existingAmenities[key]=false;
+  let existingAmenities= JSON.parse(JSON.stringify(amenityExists));
   // filter for hotel  
-  for (let i = 0; i < hotelLib.length && (nation == hotelLib[i].country || nation == ""); i++) {
-    hotelLib[i].amenities.forEach(function(amenity) {
-      // Check if Key exists and is false
-      if (existingAmenities[amenity.toLowerCase()] == false)
-        existingAmenities[amenity.toLowerCase()] = true;
-    });
+  for (let i = 0; i < hotelLib.length; i++) {
+  	if(nation == hotelLib[i].country || nation == ""){
+      hotelLib[i].amenities.forEach(function(amenity) {
+        // Check if Key exists and is false
+        if (existingAmenities[amenity.toLowerCase()] == false)
+          existingAmenities[amenity.toLowerCase()] = true;
+      });
+    }
   }
   let output = JSON.stringify(existingAmenities);
   console.log(output);
@@ -65,6 +65,8 @@ const calcHotelAmenities = (hotelLib) => {
 
   console.log(amenitiesNum);
 }
+
+getExistingAmenities(hotels, amenityExistsInList)
 getExistingAmenities(hotels, amenityExistsInList, country)
 getAllAmenities(hotels)
 calcHotelAmenities(hotels)
