@@ -60,9 +60,7 @@ const getAllAmenities = (hotelLib) => {
 
 const calcHotelAmenities = (hotelLib) => {
   let amenitiesNum = [];
-  for (let i = 0; i < hotelLib.length; i++)
-    amenitiesNum.push(hotelLib[i].amenities.length);
-
+  for (let i = 0; i < hotelLib.length && amenitiesNum.push(hotelLib[i].amenities.length); i++);
   console.log(amenitiesNum);
 }
 
